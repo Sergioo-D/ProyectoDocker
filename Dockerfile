@@ -3,8 +3,8 @@ FROM python:3.12.2-alpine3.19
 # Establecer el directorio de trabajo en /app
 WORKDIR /app
 
-# Instalar dependencias necesarias para mysqlclient y netcat (para el script de espera opcional)
-RUN apk add --no-cache mysql-dev gcc musl-dev netcat-openbsd
+# Instalar dependencias necesarias para mysqlclient, netcat (para el script de espera opcional) y el cliente de MySQL
+RUN apk add --no-cache mysql-dev gcc musl-dev netcat-openbsd mariadb-client
 
 # Copiar los archivos del proyecto al directorio de trabajo
 COPY . .
