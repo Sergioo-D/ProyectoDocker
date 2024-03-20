@@ -103,8 +103,8 @@ DATABASES = {
         'USER':'bogdanadmin',
         'PASSWORD':'n!H7Pm9~]w2CCy8?<|yB1apDc4[>BrdkC.#|zG5EQ',
         #'HOST':'rds-mysql-mobileapps.clvfihjp6cmt.eu-west-3.rds.amazonaws.com',
-        'HOST':'192.168.140.168',
-        'PORT': '',
+        'HOST':'db',
+        'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_ALL_TABLES'",
         },
