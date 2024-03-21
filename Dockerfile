@@ -23,5 +23,4 @@ EXPOSE 8000
 
 # Usar el script de entrada como punto de entrada
 CMD ["./entrypoint.sh"]
-CMD ["./wait-for-db.sh"]
 
