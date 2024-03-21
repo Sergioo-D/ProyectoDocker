@@ -15,6 +15,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar el script de entrada y hacerlo ejecutable
 COPY entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
+RUN chmod +x /app/wait-for-db.sh
+
 
 # Exponer el puerto 8000 para que la aplicación sea accesible
 EXPOSE 8000
