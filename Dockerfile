@@ -21,5 +21,5 @@ RUN chmod +x /app/wait-for-db.sh
 EXPOSE 8000
 
 # Usar el script de entrada como punto de entrada
-CMD ["./entrypoint.sh"]
+CMD ["/app/entrypoint.sh"]
 
