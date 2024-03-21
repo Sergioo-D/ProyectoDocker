@@ -18,7 +18,7 @@ services:
 
   web:
     build: .
-    command: /bin/bash -c "./wait-for-db.sh db 3306 && python manage.py runserver 0.0.0.0:8000"
+    command: /bin/sh -c "./wait-for-db.sh db 3306 && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     ports:
