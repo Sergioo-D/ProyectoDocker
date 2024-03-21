@@ -5,7 +5,7 @@ set -e
 
 # Esperar a que la base de datos esté lista
 echo "Esperando a la base de datos..."
-./app/wait-for-db.sh db 3306
+/app/wait-for-db.sh db 3306
 
 # Aplicar migraciones de Django
 echo "Aplicando migraciones..."
