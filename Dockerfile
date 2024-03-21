@@ -14,6 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar el script de entrada y hacerlo ejecutable
 COPY entrypoint.sh entrypoint.sh
+COPY wait-for-db.sh wait-for-db.sh
 RUN chmod +x entrypoint.sh
 RUN chmod +x /app/wait-for-db.sh
 
@@ -23,3 +24,5 @@ EXPOSE 8000
 
 # Usar el script de entrada como punto de entrada
 CMD ["./entrypoint.sh"]
+CMD ["./wait-for-db.sh"]
+```
