@@ -3,12 +3,9 @@
 # Salir si algún comando falla
 set -e
 
-# Esperar a que la base de datos esté lista (Opcional, útil si tienes problemas de sincronización al arrancar)
-# echo "Esperando a la base de datos..."
-# while ! nc -z db 3306; do
-#   sleep 0.1
-# done
-# echo "Base de datos iniciada"
+# Esperar a que la base de datos esté lista
+echo "Esperando a la base de datos..."
+./wait-for-db.sh db 3306
 
 # Aplicar migraciones de Django
 echo "Aplicando migraciones..."
