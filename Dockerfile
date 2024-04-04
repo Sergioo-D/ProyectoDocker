@@ -3,15 +3,15 @@ FROM python:3.12.2
 # Establecer el directorio de trabajo en /app
 WORKDIR /app
 
-# Usar apt-get para instalar dependencias (actualizar índices de paquetes y luego instalar)
-# Nota: El paquete musl-dev no es necesario en Debian, se usa build-essential en su lugar
+# Usar apt-get para instalar dependencias
+# Se elimina el comentario al final de la línea para evitar errores
 RUN apt-get update && apt-get install -y \
-    default-libmysqlclient-dev \ # Equivalente a mysql-dev en Alpine
+    default-libmysqlclient-dev \
     gcc \
-    build-essential \ # Este paquete incluye 'make', 'gcc', etc., útil para la compilación
+    build-essential \
     netcat-openbsd \
     mariadb-client \
-    && rm -rf /var/lib/apt/lists/* # Limpiar cache de apt
+    && rm -rf /var/lib/apt/lists/*
 
 # Copiar los archivos del proyecto al directorio de trabajo
 COPY . .
