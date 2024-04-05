@@ -25,6 +25,10 @@ services:
       - db
     networks:
       - app-network
+    environment:
+      DB_USER: bogdanadmin
+      DB_PASS: tuContraseña
+      # Asegúrate de que estas credenciales no sean accesibles en tus repositorios o logs.
 
 volumes:
   mysql_data:
