@@ -1,14 +1,18 @@
 services:
-  db:
-    image: mysql:8.0
-    command: --default-authentication-plugin=caching_sha2_password
+  web:
+    build: .
+    command: /bin/bash -c "/app/wait-for-db.sh db 3306 && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - app-network
     environment:
-      MYSQL_DATABASE: proyectoDAM
-      MYSQL_USER: bogdanadmin
-      MYSQL_PASSWORD: tuContraseña
-      MYSQL_ROOT_PASSWORD: tuContraseñaRoot
+      DB_USER: bogdanadmin
+      DB_PASS: tuContraseña
     ports:
       - "3306:3306"
     networks:
