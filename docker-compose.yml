@@ -13,7 +13,3 @@ services:
     environment:
       DB_USER: bogdanadmin
       DB_PASS: tuContraseña
-    ports:
-      - "3306:3306"
-    networks:
-      - app-network
