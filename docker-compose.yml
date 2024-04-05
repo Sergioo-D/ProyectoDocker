@@ -14,7 +14,7 @@ services:
       - app-network
     environment:
       DB_USER: bogdanadmin
-      DB_PASS: tuContraseña
+      DB_PASS: n!H7Pm9~]w2CCy8?<|yB1apDc4[>BrdkC.#|zG5EQ
 
   db:
     image: mysql:8.0
@@ -24,7 +24,7 @@ services:
     environment:
       MYSQL_DATABASE: proyectoDAM
       MYSQL_USER: bogdanadmin
-      MYSQL_PASSWORD: tuContraseña
+      MYSQL_PASSWORD: n!H7Pm9~]w2CCy8?<|yB1apDc4[>BrdkC.#|zG5EQ
       MYSQL_ROOT_PASSWORD: tuContraseñaRoot
     ports:
       - "3306:3306"
