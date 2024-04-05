@@ -3,31 +3,28 @@
 set -e
 
 host="$1"
-shift
-port="$1"
-shift
-cmd="$@"
+port="$2"
+cmd="${@:3}" # Recoge todos los argumentos después del segundo argumento como el comando a ejecutar
 
-# Utiliza variables de entorno para las credenciales
-DB_USER=${DB_USER:-bogdanadmin}
-DB_PASS=${DB_PASS:-tuContraseña}
+DB_USER="${DB_USER:-bogdanadmin}"
+DB_PASS="${DB_PASS:-tuContraseña}"
 
-# Configura un timeout para evitar intentos de conexión infinitos
-TIMEOUT=60
-SECONDS=0
+# Configura un timeout y el número de intentos
+TIMEOUT=5
+ATTEMPTS=12
 
 echo "Esperando a que MySQL en '$host:$port' esté disponible..."
 
-until mysql -h "$host" -P "$port" -u"$DB_USER" -p"$DB_PASS" -e "SHOW DATABASES;" || [ $SECONDS -ge $TIMEOUT ]; do
-  >&2 echo "MySQL aún no está disponible después de $SECONDS segundos..."
-  sleep 1
-  SECONDS=$((SECONDS+1))
+for ((i=1;i<=ATTEMPTS;i++)); do
+    if mysql -h "$host" -P "$port" -u"$DB_USER" -p"$DB_PASS" -e "SELECT 1;" > /dev/null 2>&1; then
+        echo "MySQL está disponible después de $((i * TIMEOUT)) segundos - ejecutando comando."
+        exec $cmd
+        exit 0
+    else
+        echo "MySQL aún no está disponible después de $((i * TIMEOUT)) segundos..."
+        sleep $TIMEOUT
+    fi
 done
 
-if [ $SECONDS -ge $TIMEOUT ]; then
-  >&2 echo "Se alcanzó el tiempo máximo de espera de $TIMEOUT segundos para MySQL."
-  exit 1
-fi
-
->&2 echo "MySQL está disponible después de $SECONDS segundos - ejecutando comando."
-exec $cmd
+echo "Se alcanzó el tiempo máximo de espera tras $((ATTEMPTS * TIMEOUT)) segundos para MySQL."
+exit 1
