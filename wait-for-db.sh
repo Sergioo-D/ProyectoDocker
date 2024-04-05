@@ -11,7 +11,7 @@ DB_PASS="${DB_PASS:-tuContraseña}"
 
 # Configura un timeout y el número de intentos
 TIMEOUT=5
-ATTEMPTS=12
+ATTEMPTS=30
 
 echo "Esperando a que MySQL en '$host:$port' esté disponible..."
 
