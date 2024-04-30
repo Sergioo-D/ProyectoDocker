@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-%fr2gm5q^3nyr2ur50f1xxgfh#9*)vj-9w$ku*^2er(^jf^do9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.1.105.56', 'localhost', '127.0.0.1','10.1.105.37','10.1.105.46','192.168.140.168']
+ALLOWED_HOSTS = ['10.1.105.56', 'localhost', '127.0.0.1','10.1.105.37','10.1.105.46']
 
 
 # Application definition
@@ -49,11 +49,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Aplicaciones.bbdd',
     'Aplicaciones.forms',
-    'Aplicaciones.templates',
+    #'Aplicaciones.forms.apps.MyAppConfig',
+    #'Aplicaciones.templates.apps.TemplatesConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'channels',
     'Aplicaciones.chat',
+    # 'Aplicaciones.apps.AplicacionesConfig',
 ]
 
 MIDDLEWARE = [
@@ -85,13 +87,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pawswiipe.wsgi.application'
-ASGI_APPLICATION = 'pawswiipe.asgi.application'
+ASGI_APPLICATION = "pawswiipe.asgi:application"
 
-Chanel_LAYERS = {
-    "default":{
-        'BACKEND': 'channels.layers.InMemoryChannelLayer'
-    }
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
 }
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -102,9 +106,8 @@ DATABASES = {
         'NAME':'proyectoDAM',
         'USER':'bogdanadmin',
         'PASSWORD':'n!H7Pm9~]w2CCy8?<|yB1apDc4[>BrdkC.#|zG5EQ',
-        #'HOST':'rds-mysql-mobileapps.clvfihjp6cmt.eu-west-3.rds.amazonaws.com',
-        'HOST':'db',
-        'PORT': '3306',
+        'HOST':'rds-mysql-mobileapps.clvfihjp6cmt.eu-west-3.rds.amazonaws.com',
+        'PORT': '',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_ALL_TABLES'",
         },

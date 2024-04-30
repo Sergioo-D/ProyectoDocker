@@ -8,8 +8,8 @@ cmd="${@:3}" # Recoge todos los argumentos después del segundo argumento como e
 
 DB_USER="${DB_USER:-bogdanadmin}"
 DB_PASS="${DB_PASS:-tuContraseña}"
-
 # Configura un timeout y el número de intentos
+
 TIMEOUT=5
 ATTEMPTS=50
 
